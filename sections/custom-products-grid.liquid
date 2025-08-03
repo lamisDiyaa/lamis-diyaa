@@ -242,7 +242,8 @@
     left: 30px;
   }
   .color-box{
-    
+    padding-left: 15px !important;
+    padding-top: 11px !important;
     font-family: Jost-400 !important;
     font-weight: 400;
     font-style: Regular;
@@ -274,7 +275,6 @@
   }
 
      #size-container #size-select {
-      all: unset !important; 
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -285,9 +285,15 @@
     angle: 0 deg;
     opacity: 1 ;
     top: 24.35px !important;
-    border: 0.5px solid #000000 ;
+    border: 0.5px solid #000000;
     left: 0 !important;
     padding-left: 13px !important ;
+  }
+
+    #size-container #size-select:focus-visible ,#size-container #size-select:focus{
+      outline: none;
+      outline-offset: 0;
+      box-shadow: none;
   }
   
 
