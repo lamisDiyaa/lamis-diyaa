@@ -40,14 +40,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const borderDiv = document.createElement("div");
         colorDiv.classList.add("color-box");
 
-        borderDiv.style.width = "4.839285850524902px";
-        borderDiv.style.height = "39px";
-        borderDiv.style.borderLeft = ".5px solid black";
-        borderDiv.style.borderRight = ".5px solid black";
-        borderDiv.style.backgroundColor = color;
-        borderDiv.style.position = "absolute";
-        borderDiv.style.left = "-.5px";
-        borderDiv.style.top = "0";
+        borderDiv.style.setProperty(
+          "width",
+          "4.839285850524902px",
+          "important"
+        );
+        borderDiv.style.setProperty("height", "39px", "important");
+        borderDiv.style.setProperty(
+          "border-left",
+          ".5px solid black",
+          "important"
+        );
+        borderDiv.style.setProperty(
+          "border-right",
+          ".5px solid black",
+          "important"
+        );
+        borderDiv.style.setProperty(
+          "background-color",
+          `${color}`,
+          "important"
+        );
+        borderDiv.style.setProperty("position", "absolute", "important");
+        borderDiv.style.setProperty("left", "-.5px", "important");
+        borderDiv.style.setProperty("top", "0", "important");
+        colorDiv.style.setProperty("position", "relative", "important");
+        colorDiv.style.setProperty("padding", "5px 15px", "important");
+        colorDiv.style.setProperty("width", "135.5px", "important");
+        colorDiv.style.setProperty("background-color", "#FFFFFF", "important");
+        colorDiv.style.setProperty("cursor", "pointer", "important");
         colorDiv.style.position = "relative";
         colorDiv.style.padding = "5px 15px";
         colorDiv.style.width = "135.5px";
@@ -61,18 +82,26 @@ document.addEventListener("DOMContentLoaded", function () {
         colorDiv.addEventListener("click", () => {
           selectedColor = color;
           colorOptions.querySelectorAll(".color-box").forEach((div) => {
-            div.style.backgroundColor = "#FFFFFF";
-            div.style.color = "black";
+            div.style.setProperty("background-color", "#FFFFFF", "important");
+            div.style.setProperty("color", "black", "important");
           });
-          borderDiv.style.backgroundColor = color;
+          borderDiv.style.setProperty(
+            "background-color",
+            `${color}`,
+            "important"
+          );
 
           if (color === "white") {
-            borderDiv.style.backgroundColor = "white";
-            colorDiv.style.color = "black";
+            borderDiv.style.setProperty(
+              "background-color",
+              "white",
+              "important"
+            );
+            colorDiv.style.setProperty("color", "black", "important");
           } else {
-            colorDiv.style.color = "white";
+            colorDiv.style.setProperty("color", "white", "important");
           }
-          colorDiv.style.backgroundColor = "black";
+          colorDiv.style.setProperty("background-color", "black", "important");
         });
         if (selectedColorText) {
           selectedColorText.textContent = color;
