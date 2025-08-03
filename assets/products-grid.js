@@ -39,19 +39,36 @@ document.addEventListener("DOMContentLoaded", function () {
         const colorDiv = document.createElement("div");
         const borderDiv = document.createElement("div");
         colorDiv.classList.add("color-box");
-        borderDiv.style.width = "4.839285850524902px";
-        borderDiv.style.height = "39px";
-        borderDiv.style.borderLeft = ".5px solid black";
-        borderDiv.style.borderRight = ".5px solid black";
-        borderDiv.style.backgroundColor = color;
-        borderDiv.style.position = "absolute";
-        borderDiv.style.left = "-.5px";
-        borderDiv.style.top = "0";
-        colorDiv.style.position = "relative";
-        colorDiv.style.padding = "5px 15px";
-        colorDiv.style.width = "135.5px";
-        colorDiv.style.backgroundColor = "#FFFFFF";
-        colorDiv.style.cursor = "pointer";
+
+        borderDiv.style.setProperty(
+          "width",
+          "4.839285850524902px",
+          "important"
+        );
+        borderDiv.style.setProperty("height", "39px", "important");
+        borderDiv.style.setProperty(
+          "border-left",
+          ".5px solid black",
+          "important"
+        );
+        borderDiv.style.setProperty(
+          "border-right",
+          ".5px solid black",
+          "important"
+        );
+        borderDiv.style.setProperty(
+          "background-color",
+          `${color}`,
+          "important"
+        );
+        borderDiv.style.setProperty("position", "absolute", "important");
+        borderDiv.style.setProperty("left", "-.5px", "important");
+        borderDiv.style.setProperty("top", "0", "important");
+        colorDiv.style.setProperty("position", "relative", "important");
+        colorDiv.style.setProperty("padding", "5px 15px", "important");
+        colorDiv.style.setProperty("width", "135.5px", "important");
+        colorDiv.style.setProperty("background-color", "#FFFFFF", "important");
+        colorDiv.style.setProperty("cursor", "pointer", "important");
         colorDiv.title = color;
         colorDiv.textContent = color;
         colorDiv.dataset.color = color;
@@ -60,18 +77,26 @@ document.addEventListener("DOMContentLoaded", function () {
         colorDiv.addEventListener("click", () => {
           selectedColor = color;
           colorOptions.querySelectorAll(".color-box").forEach((div) => {
-            console.log(div.querySelector("div"));
-            div.style.backgroundColor = "#FFFFFF";
-            div.style.color = "black";
+            div.style.setProperty("background-color", "#FFFFFF", "important");
+            div.style.setProperty("color", "black", "important");
           });
-          borderDiv.style.backgroundColor = color;
+          borderDiv.style.setProperty(
+            "background-color",
+            `${color}`,
+            "important"
+          );
+
           if (color === "white") {
-            borderDiv.style.backgroundColor = "white";
-            colorDiv.style.color = "black";
+            borderDiv.style.setProperty(
+              "background-color",
+              "white",
+              "important"
+            );
+            colorDiv.style.setProperty("color", "black", "important");
           } else {
-            colorDiv.style.color = "white";
+            colorDiv.style.setProperty("color", "white", "important");
           }
-          colorDiv.style.backgroundColor = "black";
+          colorDiv.style.setProperty("background-color", "black", "important");
         });
         if (selectedColorText) {
           selectedColorText.textContent = color;
@@ -103,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       sizeSelect.addEventListener("focus", function () {
         defaultOption.textContent = " ";
-        defaultOption.style.display = "none";
+        defaultOption.style.setProperty("display", "none", "important");
       });
 
       sizeSelect.addEventListener("change", () => {
@@ -113,16 +138,18 @@ document.addEventListener("DOMContentLoaded", function () {
       sizeSelect.addEventListener("blur", function () {
         if (sizeSelect.value === "") {
           defaultOption.textContent = "Choose your size ";
-          defaultOption.style.display = "block";
+          defaultOption.style.setProperty("display", "block", "important");
         }
       });
-      popup.style.display = "flex";
+      popup.style.setProperty("display", "flex", "important");
     });
   });
   // close btn
-  closeBtn.onclick = () => (popup.style.display = "none");
+  closeBtn.onclick = () =>
+    popup.style.setProperty("display", "none", "important");
   window.onclick = (e) => {
-    if (e.target === popup) popup.style.display = "none";
+    if (e.target === popup)
+      popup.style.setProperty("display", "none", "important");
   };
 
   // add to cart
