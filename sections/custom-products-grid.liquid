@@ -66,7 +66,7 @@
     </div>
       <p id="popup-description"></p>
       <div id="selected-color-name" style="margin-bottom: 10px; font-weight: bold;"></div>
-      <div class="product-color-container">
+      <div id="product-color-container">
       <label for="color">color</label>
 <div id="color-options" >
 </div>
@@ -205,14 +205,14 @@
     line-height: 110.00000000000001%;
     letter-spacing: -1%;
   }
-  .product-color-container{
+  #product-color-container{
      position: absolute;
      width: 271px;
      height: 64.47715759277344px;
     top: 186px;
     left: 20px;
   }
-   .product-color-container label{
+   #product-color-container label{
     font-family: Jost-400;
     font-weight: 400;
     font-size: 14px;
@@ -228,6 +228,9 @@
     height: 40.441322326660156px;
     top: 24.04px;
     border: 0.5px solid #000000;
+  }
+  #product-color-container #color-options div:empty{
+    display: block;
   }
   #selected-color-text{
     position: absolute;
@@ -253,7 +256,8 @@
     letter-spacing: 0%;
     color: #333333;   
   }
-   #size-container #size-select{
+  
+    #size-container select:not(:-internal-list-box):not([multiple]) {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
