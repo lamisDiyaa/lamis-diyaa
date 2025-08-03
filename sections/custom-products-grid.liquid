@@ -1,0 +1,598 @@
+
+{{ 'products-grid.js' | asset_url | script_tag }}
+
+<div class="product-section">
+<div class="all-products-container">
+  <div class="products-title">
+      Tisso vison in the wild
+  </div>
+
+  {% assign default_handles = "black-leather-bag,blue-silk-tuxedo,chequered-red-shirt,classic-leather-jacket,classic-varsity-top,dark-denim-top" | split: "," %}
+
+<div class="custom-product-grid">
+
+  {% for i in (0..5) %}
+    {% assign index = i | plus: 1 %}
+    {% assign setting_id = "product_" | append: index %}
+    {% assign selected_product = section.settings[setting_id] %}
+
+    {% if selected_product != blank %}
+      {% assign product = all_products[selected_product] %}
+    {% else %}
+      {% assign fallback_handle = default_handles[i] %}
+      {% assign product = all_products[fallback_handle] %}
+    {% endif %}     
+
+    {% if product %}
+      <div class="product-card"
+        data-title="{{ product.title }}"
+        data-description="{{ product.description | strip_html }}"
+        data-price="{{ product.price | money }}"
+        data-variants='{{ product.variants | json }}'
+        data-image="{{ product.featured_image | img_url: 'medium' }}">
+        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="product-image">
+        <div class="product-selector-{{ forloop.index0 }} product-selector-icon">
+        <svg  viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="#F8F8F8" fill-opacity="0.9"/>
+        <path d="M11.3457 7.04175V15.5033" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+        <path d="M7.11523 11.2725H15.5768" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+        </svg>
+        </div>
+     
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+</div>
+</div>
+
+
+<!-- POPUP -->
+<div id="product-popup" class="popup" style="display: none;">
+  <div class="popup-content">
+  <svg id="close-popup"  viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.0376 4.94354L13.5229 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M5.0376 13.4285L13.5229 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>
+    <div class="popup-top-card">
+      <div class="popup-img-container">
+      <img id="popup-image" src="" alt=""  />
+      </div>
+    <div class="popup-container-details">
+      <h2 id="popup-title"></h2>
+      <p> <span id="popup-price"></span></p>
+      <p id="popup-description"></p>
+    </div>
+    </div>
+      <p id="popup-description"></p>
+      <div id="selected-color-name" style="margin-bottom: 10px; font-weight: bold;"></div>
+      <div class="product-color-container">
+      <label for="color">color</label>
+<div id="color-options" >
+</div>
+</div>
+<div class="size-container">
+  <label for="size-select">Size</label>
+  <select id="size-select" >
+  <option value="test"></option>
+  </select>
+  <div id="size-select-seprator"></div>
+  <svg class="custom-arrow-icon" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2L8 8L14 2" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+</svg>
+</div>
+  <button id="add-to-cart">Add to Cart</button>
+</div>
+</div>
+
+
+<style>
+
+  @font-face {
+  font-family: 'Lustria';
+  src: url('{{ "Lustria-Regular.ttf" | asset_url }}') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+  @font-face {
+  font-family: 'Jost-400';
+  src: url('{{ "Jost-Regular.ttf" | asset_url }}') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+ @font-face {
+  font-family: 'Jost-300';
+  src: url('{{ "Jost-Light.ttf" | asset_url }}') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+/* popup styling */
+ .popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .popup-content {
+    position: relative;
+    width: 311px;
+    height: 447px;
+    angle: 0 deg;
+    opacity: 1;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 0px #00000033;
+  }
+  #close-popup {
+    position: absolute;
+    cursor: pointer;
+    width: 11.999999794628748px;
+    height: 11.999999794628748px;
+    angle: 45 deg;
+    opacity: 1;
+    top: 12.7px;
+    left: 278.8px;
+  }
+ 
+  .popup-img-container{
+    width: 120px;
+  }
+  #popup-image{
+    position: absolute;
+    width: 120px;
+    height: 140px;
+    angle: 0 deg;
+    opacity: 1;
+    top: 36px;
+    left: 17px;
+  }
+
+  #popup-title{
+    position: absolute;
+    width: 136px;
+    height: 19;
+    angle: 0 deg;
+    opacity: 1;
+    top: 49px;
+    left: 145px;
+    font-family: Jost-300;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+  }
+  #popup-price{
+    position: absolute;
+    angle: 0 deg;
+    opacity: 1;
+    top: 88px;
+    left: 145px;
+    font-family: Lustria;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+  }
+  #popup-description{
+    position: absolute;
+    width: 146px;
+    height: 60;
+    angle: 0 deg;
+    opacity: 1;
+    top: 119px;
+    left: 145px;
+    font-family: Jost-300;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 110.00000000000001%;
+    letter-spacing: -1%;
+  }
+  .product-color-container{
+     position: absolute;
+     width: 271px;
+     height: 64.47715759277344px;
+    top: 186px;
+    left: 20px;
+  }
+   .product-color-container label{
+    font-family: Jost-400;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: #333333;
+  }
+  #color-options{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 271px;
+    height: 40.441322326660156px;
+    top: 24.04px;
+    border: 0.5px solid #000000;
+  }
+  #selected-color-text{
+    position: absolute;
+    top: 240px;
+    left: 30px;
+  }
+  .size-container{
+    position: absolute;
+    width: 271px;
+    height: 64px;
+    angle: 0 deg;
+    opacity: 1;
+    top: 262px;
+    left: 20px;
+  }
+  .size-container label{
+    font-family: Jost-400;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: #333333;   
+  }
+  #size-select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: absolute;
+    width: 271px;
+    background-position: right 5px center; 
+    height: 40.439998626708984px;
+    angle: 0 deg;
+    opacity: 1;
+    top: 24.35px;
+    border: 0.5px solid #000000;
+    left: 0;
+    padding-left: 13px !important;
+  }
+  .custom-arrow-icon{ 
+  position: absolute;
+  pointer-events: none; 
+  color: #000000;
+  cursor: pointer;
+  width: 12px;
+  height: 6px;
+  angle: 0 deg;
+  opacity: 1;
+  top: 42px;
+  left: 238px;
+  }
+  #size-select option{
+  text-align: center !important;
+  }
+
+  #size-select .valid{
+  text-align: start !important;
+  position: absolute;
+  padding-left: 13px;
+  }
+
+   #size-select-seprator{
+  display: inline-block;
+  position: absolute;
+  width:  .5px;
+  background-color: black;
+  height: 40.439998626708984px;
+  opacity: 1;
+  top: 24.54px;
+  left: 216px;
+  z-index: 400;
+   }
+
+  #add-to-cart{
+    position: absolute;
+    width: 271px;
+    height: 45px;
+    angle: 0 deg;
+    opacity: 1;
+    top: 377px;
+    left: 20px;
+    font-family: Jost-400;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 20.48px;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+
+
+
+
+@media only screen and (max-width: 3840px) {
+
+  /* custom-product-grid.css */
+.all-products-container{
+width: 3840px;
+height: 2340px;
+angle: 0 deg;
+opacity: 1;
+margin: auto;
+margin-top: 240px;
+}
+.products-title{
+display: none;
+}
+.custom-product-grid {
+display: grid;
+grid-template-columns: repeat(3, 919.7779541015625px);
+margin: auto;
+width: 2844.3017578125px;
+height: 1928.772216796875px;
+gap: 42.48px;
+angle: 0 deg;
+opacity: 1;
+border-color: black;
+position: relative;
+}
+
+.product-card {cursor: pointer;
+overflow: hidden;
+height: 943.1441040039062px;
+}
+.product-selector-icon {
+position: absolute;
+angle: 0 deg;
+opacity: 1;
+width: 46.732364654541016px;
+height: 46.732364654541016px;
+}
+.product-selector-0{
+top: 550.17px;
+left: 479.12px;
+}
+.product-selector-1{
+top: 471.57px;
+left: 1714px;
+}
+.product-selector-2{
+top: 174.18px;
+left: 2478.68px;
+}
+.product-selector-3{
+top: 1136.45px;
+left: 640.815px;
+}
+.product-selector-4{
+top: 1206.54px;
+left: 1413.39px;
+}
+.product-selector-5{
+top: 1535.8px;
+left: 2308.74px;
+}
+.product-image {
+width: 100%;
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+  
+}
+@media only screen and (min-width: 1440px) and (max-width: 1600px) {
+
+/* custom-product-grid.css */
+.all-products-container{
+width: 1337px;
+height: 981px;
+display: flex;
+flex-direction: column;
+gap: 30px;
+angle: 0 deg;
+opacity: 1;
+margin: auto;
+margin-top: 90px;
+}
+.products-title{
+display: block;
+width: 372px;
+height: 43px;
+angle: 0 deg;
+opacity: 1;
+font-family: Lustria;
+font-weight: 400;
+font-style: Regular;
+font-size: 36px;
+leading-trim: NONE;
+line-height: 120%;
+letter-spacing: 0px;
+vertical-align: middle;
+}
+.custom-product-grid {
+display: grid;
+grid-template-columns: repeat(3, 433px);
+gap: 20px;
+width: 1339px;
+height: 981px;
+position: relative;
+margin: auto;
+}
+
+.product-card {
+cursor: pointer;
+overflow: hidden;
+height: 444px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-icon {
+position: absolute;
+width: 22px;
+height: 22px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-0{
+top: 238px;
+left: 256.5px;
+}
+.product-selector-1{
+top: 229.04px;
+left: 815.62px;
+}
+.product-selector-2{
+top: 82px;
+left: 1167px;
+}
+.product-selector-3{
+top: 535px;
+left: 301.5px;
+}
+.product-selector-4{
+top: 568px;
+left: 665.5px;
+}
+.product-selector-5{
+top: 628px;
+left: 1225.5px;
+}
+.product-image {
+width: 100%;
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+}
+
+@media only screen and (max-width: 375.4440612792969px) {
+
+.product-section{
+height: 680px;
+width: 375.4440612792969px;
+}
+.all-products-container{
+display: flex;
+flex-direction: column;
+margin: auto;
+margin-top: 40px;
+width: 342px;
+height: 616.260009765625px;
+gap: 20px;
+opacity: 1;
+}
+.products-title{
+width: 248px;
+height: 29px;
+margin: auto;
+display: block;
+font-size: 24px;
+line-height: 120%;
+font-family: Lustria;
+font-weight: 400;
+}
+.custom-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 169px);
+  position: relative;
+  margin: auto;
+  width: 342px;
+height: 567.260009765625px;
+gap: 4px;
+angle: 0 deg;
+opacity: 1;
+}
+
+.product-card {
+  cursor: pointer;
+  overflow: hidden;
+height: 186.4199981689453px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-icon {
+position: absolute;
+width: 15.714285850524902px;
+height: 15.714285850524902px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-0{
+top: 18px;
+left: 101.29px;
+}
+.product-selector-1{
+top: 18px;
+left: 274.29px;
+}
+.product-selector-2{
+top: 209.42px;
+left: 101.29px;
+}
+.product-selector-3{
+top: 209.42px;
+left: 274.29px;
+}
+.product-selector-4{
+top: 398.84px;
+left: 101.29px;
+}
+.product-selector-5{
+top: 398.84px;
+left: 274.29px;
+}
+.product-image {
+width: 100%;
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+}
+
+
+</style>
+
+
+  
+
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "settings": [
+    { "type": "product", "id": "product_1", "label": "Product 1" },
+    { "type": "product", "id": "product_2", "label": "Product 2" },
+    { "type": "product", "id": "product_3", "label": "Product 3" },
+    { "type": "product", "id": "product_4", "label": "Product 4" },
+    { "type": "product", "id": "product_5", "label": "Product 5" },
+    { "type": "product", "id": "product_6", "label": "Product 6" }
+  ],
+  "presets": [
+    {
+      "name": "Default Grid"
+    }
+  ]
+}
+{% endschema %}

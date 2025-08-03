@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-banner"
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Ecomexperts Test Page",
+  "sections": {
+    "banner-section": {
+      "type": "custom-banner"
+    },
+    "grid-section": {
+      "type": "custom-products-grid"
+    }
+  },
+  "order": ["banner-section", "grid-section"]
+}
