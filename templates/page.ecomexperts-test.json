@@ -1,12 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "Ecomexperts Test Page",
   "sections": {
     "banner-section": {
-      "type": "custom-banner"
+      "type": "custom-banner",
+      "settings": {
+        "nav_logo_alt_text": "Store Logo",
+        "nav_title": "Find the ideal gift for your loved ones.",
+        "button_text": "CHOOSE GIFT",
+        "button_link": "/",
+        "main_heading": "The Gift Guide",
+        "main_paragraph": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "main_button_text": "Shop Now",
+        "main_button_link": "/",
+        "footer_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "footer_text_mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
+        "mobile_paragraph": "Discover Joy: Your Ultimate Holiday Gift Destination."
+      }
     },
     "grid-section": {
-      "type": "custom-products-grid"
+      "type": "custom-products-grid",
+      "settings": {
+        "product_1": "dark-winter-jacket",
+        "product_2": "",
+        "product_3": "",
+        "product_4": "",
+        "product_5": "",
+        "product_6": ""
+      }
     }
   },
-  "order": ["banner-section", "grid-section"]
+  "order": [
+    "banner-section",
+    "grid-section"
+  ]
 }
