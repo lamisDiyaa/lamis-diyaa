@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const shouldAddSoftWinter =
-        selectedColor === "Black" && selectedSize === "Medium";
+        selectedColor === "Black" && selectedSize === "M";
 
       let softWinterVariantId = null;
 
@@ -190,8 +190,9 @@ document.addEventListener("DOMContentLoaded", function () {
               card.dataset.variants.replace(/&quot;/g, '"')
             );
             const softVariant = variants.find(
-              (v) => v.option1 === "Medium" && v.option2 === "Black"
+              (v) => v.option1 === "M" && v.option2 === "Black"
             );
+
             if (softVariant) {
               softWinterVariantId = softVariant.id;
             }
