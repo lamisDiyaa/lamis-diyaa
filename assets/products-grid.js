@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // add to cart
+
   addToCartBtn.onclick = () => {
     if (!selectedColor || !selectedSize) {
       return alert("Please select both color and size");
@@ -148,80 +149,30 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!selectedVariant) {
       return alert("This combination is not available.");
     }
-    // select softWinterVariantId
-    let softWinterVariantId = null;
-    document.querySelectorAll(".product-card").forEach((card) => {
-      if (card.dataset.title === "Soft Winter Jacket") {
-        const variants = JSON.parse(
-          card.dataset.variants.replace(/&quot;/g, '"')
-        );
-        const softVariant = variants.find(
-          (v) => v.option1 === "Medium" && v.option2 === "Black"
-        );
-        if (softVariant) {
-          softWinterVariantId = softVariant.id;
-        }
-      }
-    });
 
+    const softWinterVariantId = "47537240670440";
     // add selected product
-    addToCartBtn.onclick = () => {
-      if (!selectedColor || !selectedSize) {
-        return alert("Please select both color and size");
-      }
-
-      const selectedVariant = currentVariants.find(
-        (v) => v.option1 === selectedSize && v.option2 === selectedColor
-      );
-
-      if (!selectedVariant) {
-        return alert("This combination is not available.");
-      }
-
-      const shouldAddSoftWinter =
-        selectedColor === "Black" && selectedSize === "M";
-
-      let softWinterVariantId = null;
-
-      if (shouldAddSoftWinter) {
-        document.querySelectorAll(".product-card").forEach((card) => {
-          if (card.dataset.title === "Soft Winter Jacket") {
-            const variants = JSON.parse(
-              card.dataset.variants.replace(/&quot;/g, '"')
-            );
-            const softVariant = variants.find(
-              (v) => v.option1 === "M" && v.option2 === "Black"
-            );
-
-            if (softVariant) {
-              softWinterVariantId = softVariant.id;
-            }
-          }
-        });
-      }
-
-      // Add selected product first
-      fetch("/cart/add.js", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: selectedVariant.id, quantity: 1 }),
+    fetch("/cart/add.js", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: selectedVariant.id, quantity: 1 }),
+    })
+      .then(() => {
+        //   to add softWinterVariantId
+        if (selectedColor === "Black" && selectedSize === "Medium") {
+          return fetch("/cart/add.js", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: softWinterVariantId, quantity: 1 }),
+          });
+        }
       })
-        .then(() => {
-          if (shouldAddSoftWinter && softWinterVariantId) {
-            return fetch("/cart/add.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ id: softWinterVariantId, quantity: 1 }),
-            });
-          }
-        })
-        .then(() => {
-          alert(`Added to cart: ${selectedSize} / ${selectedColor}`);
-          popup.style.display = "none";
-        })
-        .catch(() => {
-          alert("Error adding to cart");
-        });
-    };
+      .then(() => {
+        alert(`Added to cart: ${selectedSize} / ${selectedColor}`);
+        popup.style.display = "none";
+      })
+      .catch(() => {
+        alert("Error adding to cart");
+      });
   };
 });
