@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // add to cart
 
+  const darkWinterHandle = "dark-winter-jacket";
+
   addToCartBtn.onclick = () => {
     if (!selectedColor || !selectedSize) {
       return alert("Please select both color and size");
@@ -150,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return alert("This combination is not available.");
     }
 
-    const softWinterVariantId = "47537240670440";
     // add selected product
     fetch("/cart/add.js", {
       method: "POST",
@@ -158,20 +159,35 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify({ id: selectedVariant.id, quantity: 1 }),
     })
       .then(() => {
-        //   to add softWinterVariantId
+        // add darkWinterHandle
         if (selectedColor === "Black" && selectedSize === "M") {
-          return fetch("/cart/add.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: softWinterVariantId, quantity: 1 }),
-          });
+          return fetch(`/products/${darkWinterHandle}.js`)
+            .then((res) => res.json())
+            .then((product) => {
+              console.log(product);
+              const variant = product.variants.find(
+                (v) => v.option1 === "M" && v.option2 === "Black"
+              );
+              console.log(variant);
+
+              if (variant) {
+                return fetch("/cart/add.js", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: variant.id, quantity: 1 }),
+                });
+              } else {
+                console.warn("الـ variant المطلوب مش موجود");
+              }
+            });
         }
       })
       .then(() => {
         alert(`Added to cart: ${selectedSize} / ${selectedColor}`);
         popup.style.display = "none";
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
         alert("Error adding to cart");
       });
   };
