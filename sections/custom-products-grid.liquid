@@ -173,6 +173,7 @@
     line-height: 120%;
     letter-spacing: 0px;
     vertical-align: middle;
+    color: #000000;
   }
   #popup-price{
     position: absolute;
@@ -204,6 +205,7 @@
     leading-trim: NONE;
     line-height: 110.00000000000001%;
     letter-spacing: -1%;
+    color:  #000000;
   }
   #product-color-container{
      position: absolute;
@@ -231,11 +233,36 @@
   }
   #product-color-container #color-options div:empty{
     display: block;
+    width:4.839285850524902px ;
+    height:39px ;
+    top:0 ;
+    left: -.5px;
+    border-left:.5px solid black ;
+    border-right: .5px solid black;
+    position: absolute;
+    
   }
   #selected-color-text{
     position: absolute;
     top: 240px;
     left: 30px;
+  }
+  .color-box{
+    font-family: Jost-400 !important;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px !important;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-transform: capitalize;
+    width: 112px;
+    height: 18px;
+    angle: 0 deg;
+    opacity: 1;
+    top: 35px;
+    left: 15px;
+    color: #000000 !important;
   }
   #size-container{
     position: absolute;
@@ -256,8 +283,9 @@
     letter-spacing: 0%;
     color: #333333;   
   }
-  
-    #size-container select:not(:-internal-list-box):not([multiple]) {
+
+     #size-container #size-select {
+      all: unset !important; 
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -272,6 +300,8 @@
     left: 0 !important;
     padding-left: 13px !important ;
   }
+  
+
   #size-container #custom-arrow-icon{ 
   position: absolute;
   pointer-events: none; 
