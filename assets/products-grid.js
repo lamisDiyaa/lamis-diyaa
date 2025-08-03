@@ -165,31 +165,62 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // add selected product
-    fetch("/cart/add.js", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: selectedVariant.id, quantity: 1 }),
-    })
-      .then(() => {
-        // add Soft Winter Jacket if size is medium and color is black
-        if (
-          selectedColor === "Black" &&
-          selectedSize === "Medium" &&
-          softWinterVariantId
-        ) {
-          return fetch("/cart/add.js", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: softWinterVariantId, quantity: 1 }),
-          });
-        }
+    addToCartBtn.onclick = () => {
+      if (!selectedColor || !selectedSize) {
+        return alert("Please select both color and size");
+      }
+
+      const selectedVariant = currentVariants.find(
+        (v) => v.option1 === selectedSize && v.option2 === selectedColor
+      );
+
+      if (!selectedVariant) {
+        return alert("This combination is not available.");
+      }
+
+      const shouldAddSoftWinter =
+        selectedColor === "Black" && selectedSize === "Medium";
+
+      let softWinterVariantId = null;
+
+      if (shouldAddSoftWinter) {
+        document.querySelectorAll(".product-card").forEach((card) => {
+          if (card.dataset.title === "Soft Winter Jacket") {
+            const variants = JSON.parse(
+              card.dataset.variants.replace(/&quot;/g, '"')
+            );
+            const softVariant = variants.find(
+              (v) => v.option1 === "Medium" && v.option2 === "Black"
+            );
+            if (softVariant) {
+              softWinterVariantId = softVariant.id;
+            }
+          }
+        });
+      }
+
+      // Add selected product first
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: selectedVariant.id, quantity: 1 }),
       })
-      .then(() => {
-        alert(`Added to cart: ${selectedSize} / ${selectedColor}`);
-        popup.style.display = "none";
-      })
-      .catch(() => {
-        alert("Error adding to cart");
-      });
+        .then(() => {
+          if (shouldAddSoftWinter && softWinterVariantId) {
+            return fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: softWinterVariantId, quantity: 1 }),
+            });
+          }
+        })
+        .then(() => {
+          alert(`Added to cart: ${selectedSize} / ${selectedColor}`);
+          popup.style.display = "none";
+        })
+        .catch(() => {
+          alert("Error adding to cart");
+        });
+    };
   };
 });
