@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         borderDiv.style.width = "4.839285850524902px";
         borderDiv.style.height = "39px";
-        borderDiv.style.borderLeft = ".5px solid black !important";
+        borderDiv.style.borderLeft = ".5px solid black ";
         borderDiv.style.borderRight = ".5px solid black";
         borderDiv.style.backgroundColor = color;
         borderDiv.style.position = "absolute";
