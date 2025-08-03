@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then(() => {
         //   to add softWinterVariantId
-        if (selectedColor === "Black" && selectedSize === "Medium") {
+        if (selectedColor === "Black" && selectedSize === "M") {
           return fetch("/cart/add.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
