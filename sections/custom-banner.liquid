@@ -1,5 +1,5 @@
 
-{{ 'final-banner.js' | asset_url | script_tag }}
+{{ 'banner.js' | asset_url | script_tag }}
 
 
 <header>
@@ -555,8 +555,111 @@ margin: auto;
 
 }
 
+ @media only screen and  (max-width: 1400px) {
 
-@media only screen and (max-width: 375.4440612792969px) {
+.container{
+align-items: center;
+display: flex;
+margin:0 auto;
+width: 100%;
+height: 64px;
+gap: 2%;
+justify-content: space-between;
+padding-top: 10px;
+padding-right: 50px;
+padding-bottom: 10px;
+padding-left: 50px;
+}
+  
+.nav-logo  {
+ width: 130px;
+ height: 20px;
+}
+.Nav-title{
+width: auto;
+font-size: 16px;
+line-height: 13.42px;
+}
+.mobile-elements {
+display: block;
+}
+
+.nav-button #nav-btn{
+width: 207px ;
+height: 44px;
+}
+  
+.nav-button a{
+width: 102px;
+height: 21px;
+top: 11.67px;
+left: 41px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.arrow-header{
+width: 24.00000000000007px;
+top: 16.67px;
+left: 161px;
+}
+.main-section {
+height: calc(100% - (64px + 34px));
+}
+.main-section h1{
+ font-size: clamp(50px, 2vw, 70px);
+width: 459px;
+height: auto;
+top: 510px;
+left: 5%;
+}
+.main-section p{
+font-size: clamp(16px, 4vw, 20px);
+width: 483px;
+height: 84px;
+top: 609px;
+left: 5%;
+line-height: 140%;
+}
+.main-section #main-btn{
+width: 220px;
+height: 50px;
+top: 743px;
+left: 5%;
+}
+.main-section #main-btn a{
+display: inline-block;
+width: 87px;
+height: 21px;
+top: 14.26px;
+left: 55.07px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.main-section #main-btn .arrow{
+width: 25.507247924804755px;
+opacity: 1;
+top: 20px;
+left: 171.11px;
+color: #FFFFFF;
+}
+.footer {
+width:100%;
+height: 34px;
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+}
+.footer .footer-txt-desktop{ 
+width: auto;  
+line-height: 13.42px;
+font-size: 16px;
+margin: auto;
+}
+}
+
+
+@media only screen and (max-width: 768px) {
 
 .mobile-elements {
 display: none !important;
@@ -564,7 +667,7 @@ display: none !important;
 .mobile-elements.show-class {
 display: block !important;
 }
- .nav-icons.show-class{
+.nav-icons.show-class{
 display: block;
 width: 18px;
 height: 10px;
@@ -573,11 +676,10 @@ opacity: 1;
 position: absolute;
 top: 27.5px;
 left: 16px;
-  }
-
- .container{
+}
+.container{
 flex-direction: column;
-width: 375.1719970703125px;
+width: 100%;
 height: 189px;
 display: block;
 text-align: center;
@@ -590,23 +692,18 @@ gap: 16px;
 }
 .banner-section{
 background: #F7F7F7;
-width: 375.1719970703125px;
+width: 100%;
 height: 65px;
 position: relative;
-padding-top: 23px;
-padding-right: 117px;
-padding-bottom: 23px;
-padding-left: 16px;
-gap: 78px;
-box-shadow: 0px 2px 4px 0px #00000026;
 }
 .nav-logo  {
 position: absolute;
 width: 151.44406127929688px;
 height: 19px;
 top: 23px;
-left: 112px;
-  }
+left: 50%;
+transform: translateX(-50%);
+}
 .Nav-title{
 font-size: 16px;
 line-height: 13.42px;
@@ -627,15 +724,72 @@ line-height: 20.48px;
 font-size: 16px;
 top: 11.67px;
 left: 57.9px;
-
 }
- .arrow-header{
+.arrow-header{
 top: 21.67px;
 left: 161px;
 width: 28.289855957031314px;
 top: 14.67px;
 left: 189.78px;
-  }
+}
+.main-section h1{
+width:auto;
+height: 30px;
+top: 580px;
+left: 2%;
+font-size: 45px;
+}
+.main-section p{
+display: none;
+}
+.main-section #main-btn{
+width: 220px;
+height: 50px;
+top: 700px;
+left: 2%;
+}
+.footer-txt-desktop{
+display: none;
+}
+.footer .footer-txt-mobile{ 
+display: block;
+height: 14px;
+margin: auto;
+font-family: Jost-400;
+font-weight: 400;
+font-size: 18px;
+line-height: 13.42px;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+}
+
+ }
+
+
+
+@media only screen and (max-width: 375.4440612792969px) {
+
+
+.container{
+width: 375.1719970703125px;
+}
+.banner-section{
+background: #F7F7F7;
+width: 375.1719970703125px;
+height: 65px;
+position: relative;
+padding-top: 23px;
+padding-right: 117px;
+padding-bottom: 23px;
+padding-left: 16px;
+gap: 78px;
+box-shadow: 0px 2px 4px 0px #00000026;
+}
+.nav-logo  {
+top: 23px;
+left: 112px;
+}
 
 
 .main-section {
@@ -729,16 +883,7 @@ padding-bottom: 10px;
 display: none;
 }
 .footer .footer-txt-mobile{ 
-display: block;
-height: 14px;
-margin: auto;
-font-family: Jost-400;
-font-weight: 400;
 font-size: 14px;
-line-height: 13.42px;
-letter-spacing: 0px;
-text-align: center;
-vertical-align: middle;
 }
 
  }

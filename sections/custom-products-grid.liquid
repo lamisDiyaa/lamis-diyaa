@@ -513,6 +513,96 @@ object-fit: cover;
 display: block;
 }
 }
+ @media only screen and  (max-width: 1439px) {
+.all-products-container{
+width: 95%;
+height: auto;
+display: flex;
+flex-direction: column;
+gap: 30px;
+angle: 0 deg;
+opacity: 1;
+margin: auto;
+margin-top: 70px;
+}
+.products-title{
+display: block;
+width: 372px;
+height: 43px;
+angle: 0 deg;
+opacity: 1;
+font-family: Lustria;
+font-weight: 400;
+font-style: Regular;
+font-size: 36px;
+leading-trim: NONE;
+line-height: 120%;
+letter-spacing: 0px;
+vertical-align: middle;
+}
+.custom-product-grid {
+gap: 10px;
+width: 100%;
+height: auto;
+margin: auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+
+}
+.product-card {
+position: relative;
+cursor: pointer;
+overflow: hidden;
+height: 400px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-icon {
+position: absolute;
+width: 22px;
+height: 22px;
+angle: 0 deg;
+opacity: 1;
+}
+.product-selector-0{
+top: 55%;
+left: 60%;
+}
+.product-selector-1{
+top: 50%;
+left: 80%;
+}
+.product-selector-2{
+top: 13%;
+left: 58%;
+}
+.product-selector-3{
+top: 18%;
+left: 68%;
+}
+.product-selector-4{
+top: 27%;
+left: 50%;
+}
+.product-selector-5{
+top: 40%;
+left: 75%;
+}
+}
+
+@media only screen and (max-width: 768px) {
+.all-products-container{
+margin-top: 50px;
+}
+.custom-product-grid {
+gap: 10px;
+width: 100%;
+height: auto;
+margin: auto;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+}
+}
 
 @media only screen and (max-width: 375.4440612792969px) {
 
@@ -541,11 +631,11 @@ font-family: Lustria;
 font-weight: 400;
 }
 .custom-product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 169px);
-  position: relative;
-  margin: auto;
-  width: 342px;
+display: grid;
+grid-template-columns: repeat(2, 169px);
+position: relative;
+margin: auto;
+width: 342px;
 height: 567.260009765625px;
 gap: 4px;
 angle: 0 deg;
@@ -553,8 +643,9 @@ opacity: 1;
 }
 
 .product-card {
-  cursor: pointer;
-  overflow: hidden;
+position: static;
+cursor: pointer;
+overflow: hidden;
 height: 186.4199981689453px;
 angle: 0 deg;
 opacity: 1;

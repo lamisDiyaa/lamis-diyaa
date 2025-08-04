@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title.textContent = card.dataset.title;
       description.textContent = card.dataset.description
         .split(" ")
-        .slice(0, 14)
+        .slice(0, 12)
         .join(" ");
       price.textContent = card.dataset.price;
       image.src = card.dataset.image;
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   body: JSON.stringify({ id: variant.id, quantity: 1 }),
                 });
               } else {
-                console.warn("الـ variant المطلوب مش موجود");
+                console.warn("not found");
               }
             });
         }
