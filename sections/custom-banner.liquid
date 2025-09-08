@@ -1,0 +1,995 @@
+
+{{ 'banner.js' | asset_url | script_tag }}
+
+
+<header>
+<nav>
+  <div class="container">
+<div class="banner-section">
+   <svg id="menu" width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-icons show-class one">
+<path d="M1 6.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 1.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 11.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+
+
+
+
+
+
+
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-icons  two">
+<path d="M1 13.9997L13.7279 1.27177" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 1.00031L13.7279 13.7282" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+
+  <img 
+    src="{% if section.settings.nav_logo != blank %}
+            {{ section.settings.nav_logo | image_url }}
+         {% else %}
+            {{ 'nav_logo.png' | asset_url }}
+         {% endif %}"
+    alt="{{ section.settings.nav_logo_alt_text | escape }}"
+    class="nav-logo"
+  />
+</div>
+
+<div class="Nav-title  mobile-elements ">{{ section.settings.nav_title }}</div>
+
+<div class="nav-button  mobile-elements"><button id="nav-btn"> <a  href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a> 
+
+
+
+
+
+
+<svg class="arrow-header" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="currentColor"/>
+</svg>
+
+
+
+
+
+
+
+</button></div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</nav>
+<div class="main-section">
+
+<div class="maim-section-top">
+
+</div>
+<div class="maim-section-bottom">
+  <h1 class="navigation-">{{ section.settings.main_heading }}</h1>
+  <p>{{ section.settings.main_paragraph }}</p>
+  <p class="mobile-version-txt">{{ section.settings.mobile_paragraph }}</p>
+
+  
+  <button id="main-btn">
+    <a href="{{ section.settings.main_button_link }}">
+      {{ section.settings.main_button_text }}
+    </a>
+<svg class="arrow" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="currentColor"/>
+</svg>
+  </button>
+
+
+
+
+  
+</div>
+
+</div>
+
+<div class="footer-container">
+<div class="footer">  <p class="footer-txt-desktop">{{ section.settings.footer_text }}</p>  <p class="footer-txt-mobile">{{ section.settings.footer_text_mobile }}</p> </div>
+</div>
+
+
+</header>
+
+
+
+<style>
+  @font-face {
+  font-family: 'Jost-400';
+  src: url('{{ "Jost-Regular.ttf" | asset_url }}') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+ @font-face {
+  font-family: 'Jost-500';
+  src: url('{{ "Jost-Medium.ttf" | asset_url }}') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+header{
+  position: relative;
+}
+
+nav{
+angle: 0 deg;
+opacity: 1;
+background: #F5F5F5;
+overflow: hidden;
+}
+.container{
+overflow: hidden;
+ align-items: center;
+justify-content: space-between;
+display: flex;
+margin:0 auto;
+}
+.nav-icons{
+display: none;
+cursor: pointer;
+}
+.banner-section {
+display: inline-block;
+}
+.mobile-responsive{
+display: none;
+}
+
+.nav-logo  { 
+angle: 0 deg;
+opacity: 1;
+}
+.Nav-title{
+angle: 0 deg;
+opacity: 1;
+font-family: Jost-400;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 13.42px;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+  }
+.nav-button #nav-btn{
+pointer-events: auto;
+background: #FFF544;
+angle: 0 deg;
+opacity: 1;
+position: relative;
+z-index: 1;
+overflow: hidden;
+cursor: pointer;
+border: none;
+outline: none !important;
+}
+.nav-button #nav-btn::after {
+content: "";
+height: 100%;
+width: 0;
+background: #000000;
+inset: 0;
+position: absolute;
+transition: all .5s;
+transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7) !important;
+z-index: -1;
+top: 0;
+left: 0;
+pointer-events: none;
+}
+
+.nav-button #nav-btn:hover::after {
+  width: 100%;
+}
+.nav-button a{
+text-decoration: none;
+font-family: Jost-400;
+font-weight: 400;
+font-style: Regular;
+leading-trim: NONE;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+text-transform: uppercase;
+color:  #000000;
+position: absolute;
+angle: 0 deg;
+transition: all .5s;
+opacity: 1;
+}
+
+
+.nav-button #nav-btn:hover a{
+color:   #F5F5F5;
+}
+
+  
+.arrow-header{
+transition: all .5s;
+position: absolute;
+opacity: 1;
+}
+.nav-button #nav-btn:hover .arrow-header{
+color:   #F5F5F5;
+}
+.main-section {
+background-image: url('{{ "one.png" | asset_url }}') ;
+background-position: center;
+background-size: cover;
+height: 780px;
+width: 100%;
+angle: 0 deg;
+opacity: 1;
+}
+
+
+.maim-section-top{
+height: 390px;
+width: 100%;
+}
+.maim-section-bottom{
+height: 390px;
+width: 100%;
+}
+.mobile-version-txt{
+  display: none;
+}
+.main-section h1{
+position: absolute;
+opacity: 1;
+font-family: Jost-500;
+font-weight: 500;
+leading-trim: NONE;
+letter-spacing: 0px;
+vertical-align: middle;
+line-height: 100%;
+}
+.main-section p{
+position: absolute;
+font-family: Jost-400;
+angle: 0 deg;
+opacity: 1;
+font-style: Regular;
+font-weight: 400;
+font-style: Regular;
+leading-trim: NONE;
+letter-spacing: 0px;
+vertical-align: middle;
+}
+.main-section #main-btn{
+pointer-events: auto;
+display: block;
+position: absolute;
+angle: 0 deg;
+opacity: 1;
+background: #000000;
+border: none !important;
+z-index: 1;
+cursor: pointer;
+}
+ .main-section #main-btn::after {
+content: "";
+height: 100%;
+width: 0;
+background: #FFF544;
+inset: 0;
+position: absolute;
+transition: all .5s;
+transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+z-index: -1;
+top: 0;
+left: 0;
+pointer-events: none;
+}
+.main-section #main-btn:hover::after {
+width: 100% !important;
+} 
+.main-section #main-btn a{
+position: absolute;
+text-decoration: none;
+color: #FFFFFF;
+font-family: Jost-400;
+font-weight: 400;
+font-style: Regular;
+angle: 0 deg;
+opacity: 1;
+leading-trim: NONE;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+text-transform: uppercase;
+transition: all .5s;
+}
+.main-section #main-btn:hover a{
+color: #000000;
+}
+.main-section .arrow{
+position: absolute;
+transition: all .5s;
+}
+.main-section #main-btn:hover .arrow{
+color: #000000;
+}
+.footer-container{
+ background: #F5F5F5;
+}
+.footer{
+angle: 0 deg;
+opacity: 1;
+margin: auto;
+
+}
+.footer-txt-mobile{
+display: none;
+}
+.footer .footer-txt-desktop{
+color: #000000;
+angle: 0 deg;
+opacity: 1;
+font-family: Jost-400;
+font-weight: 400;
+font-style: Regular;
+leading-trim: NONE;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+}
+
+
+@media only screen and (max-width: 3840px) {
+.container{ 
+position: relative;
+align-items: center;
+display: flex;
+margin:0 auto;
+width: 3840px;
+height: 170.6666717529297px;
+gap: 720px;
+angle: 0 deg;
+opacity: 1;
+padding-top: 26.67px;
+padding-right: 133.33px;
+padding-bottom: 26.67px;
+padding-left: 133.33px;
+}
+.nav-logo  {
+width: 403.85028076171875px;
+height: 50.666831970214844px;
+}
+.Nav-title{
+width: 693px;
+font-size: 42.67px;
+line-height: 35.8px;
+}
+.nav-button #nav-btn{
+width: 552px;
+height: 117.33333587646484px;
+}
+.nav-button a{
+width: 271px;
+height: 55px;
+top: 32.11px;
+left: 111px;
+font-size: 42.67px;
+line-height: 54.61px;
+}
+.arrow-header{
+width: 64.00000000000018px;
+top: 50px;
+left: 429.33px;
+}
+.main-section {
+height: 2080px;
+}
+.main-section h1{
+height: 165px;
+top: 1316px;
+left: 376px;
+font-size: 164.78px;
+}
+.main-section p{
+width: 1137px;
+height: 197.7391357421875px;
+top: 1598.48px;
+left: 376px;
+font-family: Jost-400;
+font-size: 47.08px;
+line-height: 140%;
+}
+.main-section #main-btn{
+width: 517.88818359375px;
+height: 117.70186614990234px;
+top: 1913.93px;
+left: 376px;
+}
+.main-section #main-btn a{
+width: 205px;
+height: 49px;
+top: 33.56px;
+left: 129.64px;
+font-size: 37.66px;
+line-height: 48.21px;
+}
+.main-section #main-btn .arrow{
+width: 60.04501342773454px;
+opacity: 1;
+top: 50.56px;
+left: 402.8px;
+color: #FFFFFF;
+}
+.footer {
+ width: 3840px;
+height: 89.33333587646484px;
+gap: 1000px;
+padding-top: 26.67px;
+padding-right: 133.33px;
+padding-bottom: 26.67px;
+padding-left: 133.33px;
+}
+.footer .footer-txt-desktop{   
+font-size: 42.67px;
+line-height: 35.8px;
+}
+}
+
+
+@media only screen and (min-width: 1440px) and (max-width: 1600px) {
+
+.container{
+align-items: center;
+display: flex;
+margin:0 auto;
+width: 1440px;
+height: 64px;
+gap: 360px;
+padding-top: 10px;
+padding-right: 50px;
+padding-bottom: 10px;
+padding-left: 50px;
+}
+.nav-logo  {
+ width: 151.44406127929688px;
+ height: 19px;
+}
+.Nav-title{
+width: 260px;
+font-size: 16px;
+line-height: 13.42px;
+}
+
+.nav-button #nav-btn{
+width: 207px;
+height: 44px;
+}
+  
+.nav-button a{
+width: 102px;
+height: 21px;
+top: 11.67px;
+left: 41px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.arrow-header{
+width: 24.00000000000007px;
+top: 16.67px;
+left: 161px;
+}
+.main-section {
+height: 780px;
+}
+.main-section h1{
+font-size: 70px;
+width: 459px;
+height: 70px;
+top: 489px;
+left: 67px;
+}
+.main-section p{
+width: 483px;
+height: 84px;
+top: 609px;
+left: 67px;
+font-size: 20px;
+line-height: 140%;
+}
+.main-section #main-btn{
+width: 220px;
+height: 50px;
+top: 743px;
+left: 67px;
+}
+.main-section #main-btn a{
+display: inline-block;
+width: 87px;
+height: 21px;
+top: 14.26px;
+left: 55.07px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.main-section #main-btn .arrow{
+width: 25.507247924804755px;
+opacity: 1;
+top: 20px;
+left: 171.11px;
+color: #FFFFFF;
+}
+.footer {
+width: 1440px;
+height: 34px;
+gap: 375px;
+angle: 0 deg;
+opacity: 1;
+padding-top: 10px;
+padding-right: 50px;
+padding-bottom: 10px;
+padding-left: 50px;
+}
+.footer .footer-txt-desktop{ 
+ width: 451px;  
+line-height: 13.42px;
+font-size: 16px;
+margin: auto;
+}
+
+}
+
+ @media only screen and  (max-width: 1400px) {
+
+.container{
+align-items: center;
+display: flex;
+margin:0 auto;
+width: 100%;
+height: 64px;
+gap: 2%;
+justify-content: space-between;
+padding-top: 10px;
+padding-right: 50px;
+padding-bottom: 10px;
+padding-left: 50px;
+}
+  
+.nav-logo  {
+ width: 130px;
+ height: 20px;
+}
+.Nav-title{
+width: auto;
+font-size: 16px;
+line-height: 13.42px;
+}
+.mobile-elements {
+display: block;
+}
+
+.nav-button #nav-btn{
+width: 207px ;
+height: 44px;
+}
+  
+.nav-button a{
+width: 102px;
+height: 21px;
+top: 11.67px;
+left: 41px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.arrow-header{
+width: 24.00000000000007px;
+top: 16.67px;
+left: 161px;
+}
+.main-section {
+height: calc(100% - (64px + 34px));
+}
+.main-section h1{
+ font-size: clamp(50px, 2vw, 70px);
+width: 459px;
+height: auto;
+top: 510px;
+left: 5%;
+}
+.main-section p{
+font-size: clamp(16px, 4vw, 20px);
+width: 483px;
+height: 84px;
+top: 609px;
+left: 5%;
+line-height: 140%;
+}
+.main-section #main-btn{
+width: 220px;
+height: 50px;
+top: 743px;
+left: 5%;
+}
+.main-section #main-btn a{
+display: inline-block;
+width: 87px;
+height: 21px;
+top: 14.26px;
+left: 55.07px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.main-section #main-btn .arrow{
+width: 25.507247924804755px;
+opacity: 1;
+top: 20px;
+left: 171.11px;
+color: #FFFFFF;
+}
+.footer {
+width:100%;
+height: 34px;
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+}
+.footer .footer-txt-desktop{ 
+width: auto;  
+line-height: 13.42px;
+font-size: 16px;
+margin: auto;
+}
+}
+
+
+@media only screen and (max-width: 768px) {
+
+.mobile-elements {
+display: none !important;
+}
+.mobile-elements.show-class {
+display: block !important;
+}
+.nav-icons.show-class{
+display: block;
+width: 18px;
+height: 10px;
+angle: 0 deg;
+opacity: 1;
+position: absolute;
+top: 27.5px;
+left: 16px;
+}
+.container{
+flex-direction: column;
+width: 100%;
+height: 189px;
+display: block;
+text-align: center;
+margin: auto;
+height: 65px;
+background: #F2F2F2;
+padding: 0;
+justify-content: center;
+gap: 16px;
+}
+.banner-section{
+background: #F7F7F7;
+width: 100%;
+height: 65px;
+position: relative;
+}
+.nav-logo  {
+position: absolute;
+width: 151.44406127929688px;
+height: 19px;
+top: 23px;
+left: 50%;
+transform: translateX(-50%);
+}
+.Nav-title{
+font-size: 16px;
+line-height: 13.42px;
+margin:16px auto;
+width: 260px;
+height: 14px;
+}
+.nav-button #nav-btn{
+width: 244px;
+height: 44px;
+}
+.nav-button a{
+display: inline-block;
+width: 102px;
+top: 11.67px;
+left: 41px;
+line-height: 20.48px;
+font-size: 16px;
+top: 11.67px;
+left: 57.9px;
+}
+.arrow-header{
+top: 21.67px;
+left: 161px;
+width: 28.289855957031314px;
+top: 14.67px;
+left: 189.78px;
+}
+.main-section h1{
+width:auto;
+height: 30px;
+top: 580px;
+left: 2%;
+font-size: 45px;
+}
+.main-section p{
+display: none;
+}
+.main-section #main-btn{
+width: 220px;
+height: 50px;
+top: 700px;
+left: 2%;
+}
+.footer-txt-desktop{
+display: none;
+}
+.footer .footer-txt-mobile{ 
+display: block;
+height: 14px;
+margin: auto;
+font-family: Jost-400;
+font-weight: 400;
+font-size: 18px;
+line-height: 13.42px;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+}
+
+ }
+
+
+
+@media only screen and (max-width: 375.4440612792969px) {
+
+
+.container{
+width: 375.1719970703125px;
+}
+.banner-section{
+background: #F7F7F7;
+width: 375.1719970703125px;
+height: 65px;
+position: relative;
+padding-top: 23px;
+padding-right: 117px;
+padding-bottom: 23px;
+padding-left: 16px;
+gap: 78px;
+box-shadow: 0px 2px 4px 0px #00000026;
+}
+.nav-logo  {
+top: 23px;
+left: 112px;
+transform: translateX(0);
+}
+
+
+.main-section {
+background-image: none ;
+position: relative;
+height: 421px;
+width: 375.4440612792969px;
+angle: 0 deg;
+opacity: 1;
+}
+
+
+.maim-section-top{
+height: 157px;
+width: 100%;
+}
+.maim-section-bottom{
+height: 264px;
+width: 100%;
+overflow: hidden;
+background-image: url('{{ "Frame-mobile.png" | asset_url }}') ;
+background-position: center ;
+background-repeat: no-repeat;
+background-size:contain;
+ 
+}
+.main-section h1{
+width: 197px;
+height: 30px;
+top: 49px;
+left: 88.78px;
+font-size: 30px;
+}
+
+.main-section p{
+display: none;
+}
+.main-section .mobile-version-txt{
+position: absolute;
+display: block;
+width: 340px;
+top: 103px;
+left: 16.78px;
+font-size: 16px;
+line-height: 130%;
+font-family: Jost-400;
+font-weight: 400;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 130%;
+letter-spacing: 0px;
+text-align: center;
+}
+.main-section #main-btn{
+pointer-events: auto;
+width: 193px;
+height: 45px;
+gap: 10px;
+top: 337px;
+left: 90.78px;
+padding-top: 13px;
+padding-right: 20px;
+padding-bottom: 13px;
+padding-left: 20px;
+}
+.main-section #main-btn a{
+display: inline-block;
+width: 87px;
+height: 21px;
+top: 14.26px;
+left: 40.07px;
+line-height: 20.48px;
+font-size: 16px;
+}
+.main-section #main-btn .arrow{
+width: 25.507247924804755px;
+opacity: 1;
+top: 19px;
+left: 153.11px;
+color: #FFFFFF;
+}
+
+.footer {
+width: 100%;
+height: 34px;
+padding: 0px;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.footer-txt-desktop{
+display: none;
+}
+.footer .footer-txt-mobile{ 
+font-size: 14px;
+}
+
+ }
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "nav_logo",
+      "label": "Navigation Logo"
+    },
+    {
+      "type": "text",
+      "id": "nav_logo_alt_text",
+      "label": "Alternative Text for Logo",
+      "default": "Store Logo"
+    },
+    {
+      "type": "text",
+      "id": "nav_title",
+      "label": "Navigation Title",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "text",
+      "id": "main_paragraph",
+      "label": "Main Paragraph",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "main_button_text",
+      "label": "Main Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "main_button_link",
+      "label": "Main Button Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    {
+      "type": "text",
+      "id": "footer_text_mobile",
+      "label": "Footer Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+    {
+      "type": "text",
+      "id": "mobile_paragraph",
+      "label": "Mobile Paragraph Text",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+
